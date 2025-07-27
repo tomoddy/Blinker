@@ -1,0 +1,29 @@
+﻿@page
+@model IndexModel
+@{
+    Dictionary<string, string> colours = new Dictionary<string, string>
+    {
+        { "Red", "danger" },
+        { "Yellow", "warning" },
+        {"Green", "success" },
+        {"Blue", "info" }
+    };
+
+    foreach (string colour in colours.Keys)
+    {
+        <div class="row p-2">
+            <button id="button-@colour.ToLowerInvariant()" class="btn btn-@colours[colour] btn-lg" style="height: calc(.25*(100vh - 125px))" onclick="light_led('@colour.ToLowerInvariant()')"></button>
+        </div>
+    }
+}
+
+@section Scripts
+{
+    <script>
+        function light_led(colour)
+        {
+            console.log('Lighting LED: ' + colour);
+            fetch('http://192.168.1.169:7000/led?colour=' + colour);
+        }
+    </script>
+}
