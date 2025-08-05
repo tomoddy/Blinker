@@ -7,7 +7,7 @@ namespace Blinker.Pages
     [ValidateAntiForgeryToken]
     public class IndexModel : PageModel
     {
-        public string Path = "http://192.168.1.169:7000/led";
+        public string Path = "http://tzer0m.duckdns.org:7000/led";
 
         public HttpClient Client { get; set; }
 
