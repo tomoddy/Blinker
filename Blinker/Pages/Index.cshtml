@@ -17,8 +17,6 @@
         function light_led(colour)
         {
             console.log('Lighting LED: ' + colour);
-            // fetch('@Model.Path?colour=' + colour);
-
             $.ajax({
                 url: '?colour=' + colour,
                 type: 'GET',
