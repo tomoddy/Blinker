@@ -16,7 +16,14 @@ namespace Blinker.Pages
         public IndexModel()
         {
             Client = new();
-            Colours = JsonConvert.DeserializeObject<ColourSet>(Client.SendAsync(new HttpRequestMessage(HttpMethod.Get, Path)).Result.Content.ReadAsStringAsync().Result)?.Colours!;
+            try
+            {
+                Colours = JsonConvert.DeserializeObject<ColourSet>(Client.SendAsync(new HttpRequestMessage(HttpMethod.Get, Path)).Result.Content.ReadAsStringAsync().Result)?.Colours!;
+            }
+            catch (AggregateException)
+            {
+                Colours = [];
+            }
         }
 
         public async void OnGet(string? colour)
